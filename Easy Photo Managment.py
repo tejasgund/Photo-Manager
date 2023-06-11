@@ -1,12 +1,56 @@
 try:
-    import tkinter as tk
-    from tkinter import ttk
-    import os
-    from PIL import ImageTk, Image
-    from tkinter import filedialog
-    from tkinter import messagebox
-    # from pync import Notifier
-    import shutil
+    
+    try:
+        import subprocess
+        import sys
+    except:
+        print("Import Subprocess And sys madules manually")
+    
+    try:
+        import tkinter as tk
+        from tkinter import ttk
+        from tkinter import filedialog
+        from tkinter import messagebox
+    except:
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install',
+'tkinter'])
+            
+ 
+            
+    try:
+        import os
+    except:
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install',
+'os'])
+            
+    try:
+        from PIL import ImageTk, Image
+    except:
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install',
+'PIL'])
+            
+    try:
+        import shutil
+
+    except:
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install',
+'shutil'])
+            
+    try:
+        from pync import Notifier
+    except:
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install',
+'pync'])
+            
+  
+        
+   
+    
+
+   
+   
+    
+    
 
 
     class Images(tk.Tk):
@@ -105,16 +149,7 @@ try:
             self.image7 = tk.Label(self.frame2, bg='white')
             self.image7.place(x=1270, y=1, width=self.w1, height=self.h1)
 
-            self.image8 = tk.Label(self.frame2, bg='white')
-            self.image8.place(x=1450, y=1, width=350, height=200)
-
-            Name2 = tk.Label(self.image8, textvariable=self.main_file_name)
-            Name4 = tk.Label(self.image8, text=self.main_folder_name)
-            Name6 = tk.Label(self.image8, textvariable=self.copy_main_folder_name)
-
-            Name2.grid(row=0, column=1, sticky=tk.W, pady=2, padx=5)
-            Name4.grid(row=1, column=1, sticky=tk.W, pady=2)
-            Name6.grid(row=2, column=1, sticky=tk.W, pady=2)
+           
 
             self.name1 = tk.Label(self.frame3, bg='black', wraplength=0, width=10, fg='gold', font=font2)
             self.name1.place(x=70, y=1)
@@ -1005,4 +1040,10 @@ try:
 
 
 except:
-    print("Error")
+    
+    message="Something Error please Contact a Devloper"+"\n"+"Name : Tejas Gund"+"\n"+"Mo.No : 8177809890"+"\n"+"Gmail : vickygund8@gmail.com"
+    try:
+        from tkinter import messagebox
+        messagebox.showerror("Error",message=message)
+    except:
+        print(message)
