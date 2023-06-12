@@ -149,13 +149,21 @@ try:
             self.image7 = tk.Label(self.frame2, bg='white')
             self.image7.place(x=1270, y=1, width=self.w1, height=self.h1)
             #Shortecut keys
-            self.image8 = tk.LabelFrame(self.frame2,text="Shortcut Keys", bg='orange')
+            back_bg="pink"
+            self.image8 = tk.LabelFrame(self.frame2,text="Shortcut Keys", bg=back_bg)
             self.image8.place(x=1500, y=1, width=self.w1+200, height=self.h1)
-            shortcut1=tk.Label(self.image8,text="Press Next(>)  Key = Next Image",background="orange",foreground="Blue",font=("Arial",10)).grid(row=0,column=0,pady=1)
-            shortcut1=tk.Label(self.image8,text="Press Back(<)  Key = Back Image",background="orange",foreground="Blue",font=("Arial",10)).grid(row=1,column=0,pady=1)
-            shortcut1=tk.Label(self.image8,text="Press One(1)   Key = Copy Image",background="orange",foreground="Blue",font=("Arial",10)).grid(row=2,column=0,pady=1)
-            shortcut1=tk.Label(self.image8,text="Press Two(2)   Key = Move Image",background="orange",foreground="Blue",font=("Arial",10)).grid(row=3,column=0,pady=1)
-            shortcut1=tk.Label(self.image8,text="Press Three(3) Key = Delete Image",background="orange",foreground="Blue",font=("Arial",10)).grid(row=4,column=0,pady=1)
+            self.shortcut1=tk.Label(self.image8,text="Press Next(>)  Key = Next Image",background=back_bg,foreground="Blue",font=("Arial",10))
+            self.shortcut1.grid(row=0,column=0,pady=1)
+            self.shortcut2=tk.Label(self.image8,text="Press Back(<)  Key = Back Image",background=back_bg,foreground="Blue",font=("Arial",10))
+            self.shortcut2.grid(row=1,column=0,pady=1)
+            self.shortcut3=tk.Label(self.image8,text="Press One(1)   Key = Copy Image",background=back_bg,foreground="Blue",font=("Arial",10))
+            self.shortcut3.grid(row=2,column=0,pady=1)
+            self.shortcut4=tk.Label(self.image8,text="Press Two(2)   Key = Move Image",background=back_bg,foreground="Blue",font=("Arial",10))
+            self.shortcut4.grid(row=3,column=0,pady=1)
+            self.shortcut5=tk.Label(self.image8,text="Press Three(3) Key = Delete Image",background=back_bg,foreground="Blue",font=("Arial",10))
+            self.shortcut5.grid(row=4,column=0,pady=1)
+           
+        
             
             
 
@@ -292,6 +300,9 @@ try:
                     self.after(700, normal)
 
                 def copy_file(event=None):
+                    self.shortcut3.configure(foreground="red")
+                    self.shortcut3.after(400,lambda :self.shortcut3.configure(foreground="blue"))
+                    
                     if len(self.selectpath_entry.get()) > 0:
                         filename = self.filepathlist[self.var]
                         destination = os.path.join(self.p.get(), self.filename[self.var])
@@ -308,6 +319,8 @@ try:
                     # Notifier.notify("Successfully Copy")
 
                 def move_file(event=None):
+                    self.shortcut4.configure(foreground="red")
+                    self.shortcut4.after(400,lambda :self.shortcut4.configure(foreground="blue"))
                     if len(self.selectpath_entry.get()) > 0:
                         filename = self.filepathlist[self.var]
                         destination = os.path.join(self.p.get(), self.filename[self.var])
@@ -325,6 +338,8 @@ try:
                     # Notifier.notify("Successfully Move")
 
                 def delete_file(event=None):
+                    self.shortcut5.configure(foreground="red")
+                    self.shortcut5.after(400,lambda :self.shortcut5.configure(foreground="blue"))
                     filename = self.filepathlist[self.var]
                     os.remove(filename)
                     refresh()
@@ -510,15 +525,18 @@ try:
 
             self.keys = tk.LabelFrame(self.menubar, height=50, bg='red')
             self.keys.pack(fill=tk.X, side='bottom')
-            backkey = ttk.Button(self.keys, text="Previous", command=self.Back).pack(anchor='ne', side='left')
-            nextkey = ttk.Button(self.keys, text="Next", command=self.Next).pack(anchor='nw', side='right')
-            show = ttk.Button(self.keys, text="Show", command=self.show).pack(side='top')
+            self.backkey = tk.Button(self.keys, text="Previous", command=self.Back,fg='blue',width=10)
+            self.backkey.pack(anchor='ne', side='left')
+            self.nextkey = tk.Button(self.keys, text="Next", command=self.Next,fg="blue",width=10)
+            self.nextkey.pack(anchor='nw', side='right')
+            self.show = tk.Button(self.keys, text="Show", command=self.show,fg="black",width=10)
+            self.show.pack(side='top')
 
             # Previous
             self.bind("<Left>", self.Back)
             self.bind("<Right>", self.Next)
 
-            self.Image_name = tk.Label(self.menubar, text='None', wraplength=300)
+            self.Image_name = tk.Label(self.menubar, text='None', wraplength=300,width=80)
             self.Image_name.pack(side='bottom')
 
             # self.search_text.bind("<FocusIn>",self.search_focusin)
@@ -529,15 +547,8 @@ try:
             self.button.pack(anchor='ne', side='right', pady=10)
             self.combobox.pack(pady=10, padx=10, fill=tk.X, side='top', anchor='nw')
             searchtext_out()
-            self.ImageName()
+            
 
-        def ImageName(self):
-            if self.IamgeDetail_Width != 50:
-                self.IamgeDetail_Width += 2
-                self.Image_name.configure(width=self.IamgeDetail_Width)
-                self.Image_name.after(10, self.ImageName)
-            else:
-                self.IamgeDetail_Width = 0
 
         def SUMBIT(self):
 
@@ -1000,11 +1011,15 @@ try:
                 # self.imagedeatil.configure(text=f"Not Available")
 
         def Next(self, event=None):
+            self.shortcut1.configure(foreground="red")
+            self.shortcut1.after(400,lambda :self.shortcut1.configure(foreground="blue"))
+            self.nextkey.configure(foreground="red")
+            self.nextkey.after(400,lambda :self.nextkey.configure(foreground="blue"))        
             if self.var != self.totalimages:
-                self.ImageName()
                 self.animation()
                 self.animation3()
                 self.var += 1
+                
                 try:
                     self.file_adress.set(self.filepathlist[self.var])
 
@@ -1019,9 +1034,12 @@ try:
                 self.update()
 
         def Back(self, event=None):
+            self.shortcut2.configure(foreground="red")
+            self.shortcut2.after(400,lambda :self.shortcut2.configure(foreground="blue"))
+            self.backkey.configure(foreground="red")
+            self.backkey.after(400,lambda :self.backkey.configure(foreground="blue"))
 
             if self.var != 0:
-                self.ImageName()
                 self.var = self.var - 1
                 try:
                     self.file_adress.set(self.filepathlist[self.var])
