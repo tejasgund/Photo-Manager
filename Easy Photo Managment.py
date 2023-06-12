@@ -149,7 +149,8 @@ try:
             self.image7 = tk.Label(self.frame2, bg='white')
             self.image7.place(x=1270, y=1, width=self.w1, height=self.h1)
             #Shortecut keys
-            self.image8 = tk.LabelFrame(self.frame2,text="Shortcut Keys", bg='orange')
+            back_bg="pink"
+            self.image8 = tk.LabelFrame(self.frame2,text="Shortcut Keys", bg=back_bg)
             self.image8.place(x=1500, y=1, width=self.w1+200, height=self.h1)
             self.shortcut1=tk.Label(self.image8,text="Press Next(>)  Key = Next Image",background=back_bg,foreground="Blue",font=("Arial",10))
             self.shortcut1.grid(row=0,column=0,pady=1)
