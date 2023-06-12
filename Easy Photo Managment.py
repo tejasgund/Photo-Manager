@@ -68,7 +68,7 @@ try:
             self.patrait_setwidth = 420
             self.patrait_setheight = 654
             # LANDSCAPE
-            self.landscape_setwidth = 1200
+            self.landscape_setwidth = 1300
             self.landscape_setheight = 628
             self.Scalevariable = tk.StringVar()
             self.adress = tk.StringVar()
@@ -411,6 +411,9 @@ try:
                     self.bind("<KeyPress-1>", copy_file)
                     self.bind("<KeyPress-2>", move_file)
                     self.bind("<KeyPress-3>", delete_file)
+                    
+                    
+                    
 
                 self.MainFrame = tk.LabelFrame(self.menubar, text='Action Keys', bg='black', fg='gold',
                                                font=('menio', 30, 'bold'))
@@ -531,10 +534,13 @@ try:
             self.nextkey.pack(anchor='nw', side='right')
             self.show = tk.Button(self.keys, text="Show", command=self.show,fg="black",width=10)
             self.show.pack(side='top')
+            
 
             # Previous
             self.bind("<Left>", self.Back)
             self.bind("<Right>", self.Next)
+            
+                    
 
             self.Image_name = tk.Label(self.menubar, text='None', wraplength=300,width=80)
             self.Image_name.pack(side='bottom')
@@ -551,7 +557,7 @@ try:
 
 
         def SUMBIT(self):
-
+            
             if self.combobox.get() == 'ALL':
                 self.scanfile(self.selectfolder.get(), self.IMAGE)
             else:
@@ -606,6 +612,7 @@ try:
         # &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&__________________________
 
         def scanfile(self, adress, *args):
+            
             if self.active == 0:
                 self.active = 1
                 IMAGE = args
@@ -672,11 +679,19 @@ try:
                     self.search_number_var.set(self.number)
                 except:
                     pass
-                Loading = tk.Label(self.frame3, text=f' {lent} ', font=('didot', 30, 'bold'), bg='black', fg='white')
+                #PROGRESBAR
+                Loading = tk.Label(self.frame3, text=f' {lent} ', font=('didot', 20, 'bold'), bg='black', fg='white')
 
-                Loading.pack(expand=True, fill='both', pady=10)
+                Loading.pack(pady=10,side=tk.LEFT)
+                progressbar=ttk.Progressbar(self.frame3)
+                progressbar.pack(pady=10,side=tk.RIGHT,fill=tk.X,expand=True)
+                #PROGRESBAR END
+            
+                
 
                 for i in self.filepathlist:
+                   
+                    
 
                     try:
                         l1 = Image.open(i)
@@ -707,7 +722,9 @@ try:
                                 self.pilimagefile.append(ImageTk.PhotoImage(l1))
 
                         vars += 1
-                        Loading.configure(text=f'{lent} / {vars}')
+                        value_percent=int((vars/lent)*100)
+                        Loading.configure(text=f'{lent} / {vars} ({value_percent}%)')
+                        progressbar.configure(value=value_percent)
                         self.ImageNewShow()
                         self.update()
 
@@ -744,11 +761,13 @@ try:
                 # self.Scalebar.pack(side='bottom', fill=tk.X, pady=10)
                 self.Scalebar.place(x=370, y=720, width=self.winfo_width() - 400)
                 Loading.destroy()
+                progressbar.destroy()
                 self.active = 0
             else:
 
                 messagebox.showwarning("Already Running",
                                        "Alredy Progress Are running please wait until the process is compleate")
+                
 
         def ImageNewShow(self, event=None):
 
@@ -824,7 +843,8 @@ try:
 
         def animation(self):
             # slider go to next
-            if self.animationvariable != 170:
+            
+            if self.animationvariable != 170 and self.active==0:
 
                 if self.animationvariable < 100:
                     self.image1.place(x=70 - self.animationvariable + 10, y=1, width=130, height=100)
@@ -832,7 +852,8 @@ try:
 
                 else:
                     self.image1.place(x=0 - self.animationvariable + 10, y=0, width=130, height=100)
-
+                
+            
                 self.image2.place(x=270 - self.animationvariable)
                 self.image3.place(x=470 - self.animationvariable)
                 self.image4.place(x=670 - self.animationvariable)
@@ -892,68 +913,70 @@ try:
                 self.ImageNewShow()
 
         def animation1(self):
-            # slider goto back animation
-            if self.animationvariable != 170:
-                self.image1.place(x=70 + self.animationvariable)
-                self.image2.place(x=270 + self.animationvariable)
-                self.image3.place(x=470 + self.animationvariable)
-                self.image4.place(x=670 + self.animationvariable)
-                self.image5.place(x=870 + self.animationvariable)
-                self.image6.place(x=1070 + self.animationvariable)
-                self.image7.place(x=1270 + self.animationvariable)
+              # slider goto back animation
+            if self.active ==0:
+                if self.animationvariable != 170:
+                    self.image1.place(x=70 + self.animationvariable)
+                    self.image2.place(x=270 + self.animationvariable)
+                    self.image3.place(x=470 + self.animationvariable)
+                    self.image4.place(x=670 + self.animationvariable)
+                    self.image5.place(x=870 + self.animationvariable)
+                    self.image6.place(x=1070 + self.animationvariable)
+                    self.image7.place(x=1270 + self.animationvariable)
+    
+                    self.name1.place(x=70 + self.animationvariable)
+                    self.name2.place(x=270 + self.animationvariable)
+                    self.name3.place(x=470 + self.animationvariable)
+                    self.name4.place(x=670 + self.animationvariable)
+                    self.name5.place(x=870 + self.animationvariable)
+                    self.name6.place(x=1070 + self.animationvariable)
+                    self.name7.place(x=1270 + self.animationvariable)
+    
+                    self.file1.place(x=40 + self.animationvariable, y=1)
+                    self.file2.place(x=250 + self.animationvariable, y=1)
+                    self.file3.place(x=450 + self.animationvariable, y=1)
+                    self.file4.place(x=650 + self.animationvariable, y=1)
+                    self.file5.place(x=850 + self.animationvariable, y=1)
+                    self.file6.place(x=1050 + self.animationvariable, y=1)
+                    self.file7.place(x=1250 + self.animationvariable, y=1)
+                    self.animationvariable += 10
 
-                self.name1.place(x=70 + self.animationvariable)
-                self.name2.place(x=270 + self.animationvariable)
-                self.name3.place(x=470 + self.animationvariable)
-                self.name4.place(x=670 + self.animationvariable)
-                self.name5.place(x=870 + self.animationvariable)
-                self.name6.place(x=1070 + self.animationvariable)
-                self.name7.place(x=1270 + self.animationvariable)
-
-                self.file1.place(x=40 + self.animationvariable, y=1)
-                self.file2.place(x=250 + self.animationvariable, y=1)
-                self.file3.place(x=450 + self.animationvariable, y=1)
-                self.file4.place(x=650 + self.animationvariable, y=1)
-                self.file5.place(x=850 + self.animationvariable, y=1)
-                self.file6.place(x=1050 + self.animationvariable, y=1)
-                self.file7.place(x=1250 + self.animationvariable, y=1)
-                self.animationvariable += 10
-
-                self.frame2.after(10, lambda: self.animation1())
+                    self.frame2.after(10, lambda: self.animation1())
 
 
-            else:
-                self.image1.place(x=70)
-                self.image2.place(x=270)
-                self.image3.place(x=470)
-                self.image4.place(x=670)
-                self.image5.place(x=870)
-                self.image6.place(x=1070)
-                self.image7.place(x=1270)
-                self.name1.place(x=70)
-                self.name2.place(x=270)
-                self.name3.place(x=470)
-                self.name4.place(x=670)
-                self.name5.place(x=870)
-                self.name6.place(x=1070)
-                self.name7.place(x=1270)
-                self.file1.place(x=40, y=20)
-                self.file2.place(x=240, y=20)
-                self.file3.place(x=440, y=20)
-                self.file4.place(x=640, y=20)
-                self.file5.place(x=840, y=20)
-                self.file6.place(x=1040, y=20)
-                self.file7.place(x=1240, y=20)
+                else:
+                    self.image1.place(x=70)
+                    self.image2.place(x=270)
+                    self.image3.place(x=470)
+                    self.image4.place(x=670)
+                    self.image5.place(x=870)
+                    self.image6.place(x=1070)
+                    self.image7.place(x=1270)
+                    self.name1.place(x=70)
+                    self.name2.place(x=270)
+                    self.name3.place(x=470)
+                    self.name4.place(x=670)
+                    self.name5.place(x=870)
+                    self.name6.place(x=1070)
+                    self.name7.place(x=1270)
+                    self.file1.place(x=40, y=20)
+                    self.file2.place(x=240, y=20)
+                    self.file3.place(x=440, y=20)
+                    self.file4.place(x=640, y=20)
+                    self.file5.place(x=840, y=20)
+                    self.file6.place(x=1040, y=20)
+                    self.file7.place(x=1240, y=20)
+    
+                    self.animationvariable = 0
+                    self.ImageNewShow()
 
-                self.animationvariable = 0
-                self.ImageNewShow()
-
+            
         def animation3(self):
             # main image goto next animation
-            if self.animationvariable1 != 400:
+            if self.animationvariable1 != 400 and self.active==0:
                 self.mainphoto.place(width=self.animationvariable1)
                 # self.mainphoto.configure(height=self.animationvariable1)
-                self.animationvariable1 += 10
+                self.animationvariable1 += 100
                 self.mainphoto.after(1, self.animation3)
             else:
                 self.mainphoto.place(relwidth=1, relheight=1)
@@ -961,9 +984,9 @@ try:
 
         def animation4(self):
             # main image goto back animation
-            if self.animationvariable3 != 100:
+            if self.animationvariable3 != 100 and self.active==0 and self.All_Animation_Switch==True:
                 self.mainphoto.place(width=self.animationvariable3)
-                self.animationvariable3 = self.animationvariable3 - 10
+                self.animationvariable3 = self.animationvariable3 - 20
                 self.mainphoto.after(1, self.animation4)
 
             else:
