@@ -1,50 +1,67 @@
+
 try:
-    
+    print("\n************* Library Installation Start ***********************\n")
     try:
         import subprocess
         import sys
+        print("Done - subprocess and sys - Successfully Imported")
     except:
-        print("Import Subprocess And sys madules manually")
-    
+        print("Problem Detected - Import Subprocess And sys madules manually")
+        
     try:
         import tkinter as tk
         from tkinter import ttk
         from tkinter import filedialog
         from tkinter import messagebox
+        print("Done - tkinter , ttk , filedialog , messagebox - Successfully Imported")
     except:
+        print("Detect Problem - Importing Tkinter Library")
         subprocess.check_call([sys.executable, '-m', 'pip', 'install',
 'tkinter'])
-            
- 
-            
+        import tkinter as tk
+        from tkinter import ttk
+        from tkinter import filedialog
+        from tkinter import messagebox    
+        print("Solved Problem - Importing Tkinter Library")      
     try:
         import os
+        print("Done - os - Successfully Imported")
     except:
+        print("Detected Problem - Importing Os Library")
         subprocess.check_call([sys.executable, '-m', 'pip', 'install',
 'os'])
-            
+        import os
+        print("Solved Problem - Importing os Library")       
+              
     try:
         from PIL import ImageTk, Image
+        print("Done - PIL - Successfully Imported")
     except:
-        subprocess.check_call([sys.executable, '-m', 'pip', 'install',
-'PIL'])
-            
+        print("Detected Problem - Importing PIL Library")
+        try:
+            subprocess.check_call([sys.executable, '-m', 'pip', 'install',
+'Pillow'])     
+            from PIL import ImageTk, Image
+        except:
+            subprocess.check_call([sys.executable, '-m', 'pip', 'install',
+'PIL'])     
+            from PIL import ImageTk, Image  
+        print("Solved Problem - Importing PIL Library")     
+        
     try:
         import shutil
+        print("Done - subprocess and sys - Successfully Imported")
 
     except:
+        print("Detected Problem - Importing PIL Library")
         subprocess.check_call([sys.executable, '-m', 'pip', 'install',
 'shutil'])
+        import shutil
+        print("Solved Problem - Importing shutil Library") 
             
-    try:
-        from pync import Notifier
-    except:
-        subprocess.check_call([sys.executable, '-m', 'pip', 'install',
-'pync'])
-            
-  
-        
    
+        
+    print("\n************* Library Installation End ***********************\n")
     
 
    
