@@ -896,7 +896,7 @@ try:
 
                 self.animationvariable += 10
 
-                self.frame2.after(10, lambda: self.animation())
+                self.frame2.after(1, lambda: self.animation())
 
 
 
@@ -958,7 +958,7 @@ try:
                     self.file7.place(x=1250 + self.animationvariable, y=1)
                     self.animationvariable += 10
 
-                    self.frame2.after(10, lambda: self.animation1())
+                    self.frame2.after(1, lambda: self.animation1())
 
 
                 else:
