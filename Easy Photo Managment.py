@@ -860,6 +860,7 @@ try:
 
         def animation(self):
             # slider go to next
+           
             
             if self.animationvariable != 170 and self.active==0:
 
@@ -894,9 +895,9 @@ try:
                 self.file6.place(x=1040 - self.animationvariable, y=1)
                 self.file7.place(x=1240 - self.animationvariable, y=1)
 
-                self.animationvariable += 10
+                self.animationvariable += 85
 
-                self.frame2.after(1, lambda: self.animation())
+                self.frame2.after(100, lambda: self.animation())
 
 
 
@@ -956,9 +957,9 @@ try:
                     self.file5.place(x=850 + self.animationvariable, y=1)
                     self.file6.place(x=1050 + self.animationvariable, y=1)
                     self.file7.place(x=1250 + self.animationvariable, y=1)
-                    self.animationvariable += 10
+                    self.animationvariable += 85
 
-                    self.frame2.after(1, lambda: self.animation1())
+                    self.frame2.after(100, lambda: self.animation1())
 
 
                 else:
