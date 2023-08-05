@@ -87,6 +87,7 @@ try:
             # LANDSCAPE
             self.landscape_setwidth = 1300
             self.landscape_setheight = 628
+            
             self.Scalevariable = tk.StringVar()
             self.adress = tk.StringVar()
             self.search_number_var = tk.StringVar()
@@ -109,6 +110,7 @@ try:
             except:
 
                 self.notfoumdimage = None
+            #____________________________________________________________________________________________________________
 
             self.IMAGE = ('ALL',
                           '.ras', '.xwd', '.bmp', '.jpe', '.jpg', '.jpeg', '.xpm', '.ief', '.pbm', '.tif', '.gif',
@@ -134,7 +136,7 @@ try:
             self.frame3 = tk.Label(self, height=10, bg='black', fg='gold')
             self.frame3.pack(fill='both', expand=True, pady=5)
 
-            # ___________________End Main Frame___________________________________________________________________
+            # ___________________End Main Frame___________________________________________________________________-
 
             # __________________Creating Main Image____________________________
             self.mainphoto = tk.Label(self.frame1, bg='white')
@@ -148,9 +150,10 @@ try:
             self.menubar.place(width=self.menubar_var, relheight=1)
             self.menubar_collaps_var = 0
             # __________________________________________________________________________________MENUBAR END
-            self.w1 = 150
-            self.h1 = 150
+            
             # _______________________________Creating Slider Images____________________
+            self.w1 = 200
+            self.h1 = 200
             self.image1 = tk.Label(self.frame2, bg='white')
             self.image1.place(x=70, y=1, width=130, height=100)
             self.image2 = tk.Label(self.frame2, bg='white')
@@ -235,9 +238,10 @@ try:
             self.collaps_expand_button.bind("<Button-1>", self.menubar_expand)
             self.menubar_expand()
 
-            self.mainloop()
+            
 
         # _______________________________________________________________________________________________Functions Starts
+        
 
         def menubar_expand(self, event=None):
 
@@ -253,6 +257,7 @@ try:
                     self.collaps_expand_button.bind("<Button-1>", self.menubar_collaps)
                 except:
                     pass
+        
 
         def menubar_collaps(self, event=None):
 
@@ -860,6 +865,7 @@ try:
 
         def animation(self):
             # slider go to next
+           
             
             if self.animationvariable != 170 and self.active==0:
 
@@ -894,9 +900,9 @@ try:
                 self.file6.place(x=1040 - self.animationvariable, y=1)
                 self.file7.place(x=1240 - self.animationvariable, y=1)
 
-                self.animationvariable += 10
+                self.animationvariable += 85
 
-                self.frame2.after(1, lambda: self.animation())
+                self.frame2.after(100, lambda: self.animation())
 
 
 
@@ -956,7 +962,7 @@ try:
                     self.file5.place(x=850 + self.animationvariable, y=1)
                     self.file6.place(x=1050 + self.animationvariable, y=1)
                     self.file7.place(x=1250 + self.animationvariable, y=1)
-                    self.animationvariable += 10
+                    self.animationvariable += 85
 
                     self.frame2.after(1, lambda: self.animation1())
 
@@ -1100,6 +1106,7 @@ try:
 
 
     k = Images()
+    k.mainloop()
 
 
 
